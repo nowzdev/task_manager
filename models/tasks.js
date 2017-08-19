@@ -24,13 +24,12 @@ var TasksSchema=new mongoose.Schema({
   }
 })
 TasksSchema.methods.toJSON=function(){
-  var task=this;
-  var Obj=task.toObject();
-  Obj.CreatedIn=date(Obj.CreatedIn);
-  if(Obj.Completed){
-    Obj.CompletedAt=date(Obj.CompletedAt);
+  var task=this.toObject();
+  task.CreatedIn=date(task.CreatedIn);
+  if(task.Completed){
+    task.CompletedAt=date(task.CompletedAt);
   }
-  return _.pick(Obj,["task","CreatedIn","Completed","CompletedAt"]);
+  return _.pick(task,["task","CreatedIn","Completed","CompletedAt"]);
 }
 var tasks=mongoose.model("task",TasksSchema);
 
