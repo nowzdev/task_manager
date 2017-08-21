@@ -1,6 +1,7 @@
 const {mongoose}=require("./../config/db");
 const _=require("lodash");
 const jwt=require("jsonwebtoken");
+const bcrypt=require("bcryptjs");
 var UserShema=new mongoose.Schema({
   email:{
     type:String,
@@ -52,5 +53,20 @@ UserShema.statics.findByToken=function(token){
   }
   return users.findOne({'_id':decoded._id,'tokens.token':token,'tokens.access':decoded.access});
 }
+UserShema.pre("save",function(next){
+  var user=this;
+   if(user.isModified("password")){
+     bcrypt.genSalt(10,(err,salt)=>{
+     bcrypt.hash(user.password, salt,(err,hash)=>{
+     user.password=hash;
+     next();
+   });
+ })
+  }
+   else{
+     next();
+
+   }
+})
 var users=mongoose.model("users",UserShema);
 module.exports={users};
