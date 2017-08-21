@@ -1,4 +1,4 @@
-const {environment}=require("./config/config");
+const {environment}=require("./config/configenv");
 const express=require("express");
 var PORT=process.env.PORT;
 var NODE_ENV=process.env.NODE_ENV;
