@@ -1,4 +1,7 @@
+const {environment}=require("./config/config");
 const express=require("express");
+var PORT=process.env.PORT;
+var NODE_ENV=process.env.NODE_ENV;
 const BodyParser=require("body-parser");
 const {mongoose}=require("./config/db");
 const {tasks}=require("./models/tasks");
@@ -10,7 +13,7 @@ const _=require("lodash");
 const fs=require("fs");
 const app=express();
 app.use(BodyParser.json());
-app.post("/tasks/add",(req,res)=>{
+app.post("/tasks/add",authenticate,(req,res)=>{
   var task=req.body;
   var task=_.pick(task,["task"]);
   task.CreatedIn=new Date().getTime();
@@ -72,6 +75,7 @@ app.post("/users/me",authenticate,(req,res)=>{
   logs("server.log",`user finded by token in ${date()}`);
    res.send(req.user);
 })
-app.listen(3000,()=>{
-  logs("server.log",`Server started in port 3000 in ${date()}`)
+app.listen(PORT,()=>{
+  logs("server.log",`Server started in ${environment} mode in port ${PORT} in ${date()}`)
 })
+module.exports={app,tasks}
