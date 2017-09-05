@@ -151,7 +151,7 @@ app.delete("/users/me/token",authenticate,(req,res)=>{
     res.sendStatus(401);
   })
 })
-app.listen(PORT,()=>{
+app.listen(8080,()=>{
   logs("server.log",`Server started in ${environment} mode in port ${PORT} in ${date()}`)
 })
 module.exports={app,tasks,users}
