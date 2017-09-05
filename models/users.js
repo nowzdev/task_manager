@@ -35,7 +35,7 @@ var UserShema=new mongoose.Schema({
 UserShema.methods.GenerateToken=function(){
   var users=this;
   var access="auth";
-  var token=jwt.sign({_id:users._id,access},process.env.JWT_SECRET);
+  var token=jwt.sign({_id:users._id,access},"secretcodenowztestcodelovemyself");
   users.tokens.push({access,token})
   return users.save().then(()=>{
     return token;
