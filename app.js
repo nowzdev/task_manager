@@ -1,7 +1,9 @@
 const {environment}=require("./config/configenv");
 const express=require("express");
 var NODE_ENV=process.env.NODE_ENV;
-var port = process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 8080;
+
+var port = process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 8080,
+ip   = process.env.IP   || process.env.OPENSHIFT_NODEJS_IP || '0.0.0.0';
 const BodyParser=require("body-parser");
 const {mongoose}=require("./config/db");
 const {tasks}=require("./models/tasks");
@@ -151,7 +153,7 @@ app.delete("/users/me/token",authenticate,(req,res)=>{
     res.sendStatus(401);
   })
 })
-app.listen(port,()=>{
+app.listen(port,ip,()=>{
   console.log(port)
   logs("server.log",`Server started in ${environment} mode in port ${port} in ${date()}`)
 })
