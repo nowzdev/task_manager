@@ -5,8 +5,9 @@ var authenticate=(req,res,next)=>{
      return Promise.reject();
     }
     req.user=user;
+    req.token=req.header("x-auth");
     next();
-  }).catch((e)=>{
+  }).catch(()=>{
     res.sendStatus(401);
   })
 }

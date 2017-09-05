@@ -5,11 +5,14 @@ var logs=(path,message)=>{
 }
 var date=(val=false)=>{
   var date;
-  if(_.isNumber(val) && val){
+  if(val){
       date=new Date(val);
   }else{
     date=new Date();
   }
-  return `${date.getDate()}/${date.getMonth()+1}/${date.getFullYear()} ${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}:${date.getMilliseconds()}`;
+  if(date != "Invalid Date"){
+    return date;
+  }
+  return false;
 }
 module.exports={logs,date}
