@@ -1,0 +1,12 @@
+{
+  "test":{
+    "PORT":3000,
+    "MONGOLAB_URI":"mongodb://localhost/testtask",
+    "JWT_SECRET":"msklfmsdnfjdfnjfdfnjfdfjgnjfdnjfdgjdfdfb"
+  },
+  "development":{
+    "PORT":3000,
+    "MONGOLAB_URI":"mongodb://localhost:27017/task",
+    "JWT_SECRET":"kndkjsnvkjbvhbdfhxjbvfjdbghfdgbfdghdfbgj"
+  }
+}
