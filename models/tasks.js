@@ -73,7 +73,7 @@ var team=function(val,Task){
     var Hour=val.repeat[0].ByDay[1];
     var Day=val.repeat[0].ByDay[0];
     var Minute=val.repeat[0].ByDay[2];
-    var int=(((new Date().getTime()-val.repeat[0].StartTime)*(10**-3)/86400).toFixed())/val.repeat[0].ByDay[0];
+    var int=(((new Date().getTime()-val.repeat[0].StartTime)*(Math.pow(10,-3))/86400).toFixed())/val.repeat[0].ByDay[0];
     var int=int.toString();
     var int=int.split(".");
     date.setHours(Hour);
