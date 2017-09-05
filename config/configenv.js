@@ -1,5 +1,4 @@
 var env=process.env.NODE_ENV || "development";
-var env="wow";
 if(env==='development' || env==="test"){
   var config=require("./configenv.json");
   var envConfig=config[env];
