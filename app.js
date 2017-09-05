@@ -1,6 +1,5 @@
 const {environment}=require("./config/configenv");
 const express=require("express");
-var PORT=process.env.PORT;
 var NODE_ENV=process.env.NODE_ENV;
 var port = process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 8080;
 const BodyParser=require("body-parser");
@@ -153,6 +152,7 @@ app.delete("/users/me/token",authenticate,(req,res)=>{
   })
 })
 app.listen(port,()=>{
-  logs("server.log",`Server started in ${environment} mode in port ${PORT} in ${date()}`)
+  console.log(port)
+  logs("server.log",`Server started in ${environment} mode in port ${port} in ${date()}`)
 })
 module.exports={app,tasks,users}
