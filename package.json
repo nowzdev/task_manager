@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start":"node app.js",
-    "test": "export NODE_ENV=test || SET \"NODE_ENV=test\" && mocha test*/*"
+    "test": "export NODE_ENV=test1 || SET \"NODE_ENV=test\" && mocha test*/*"
   },
   "author": "",
   "license": "ISC",
