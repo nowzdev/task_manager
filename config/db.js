@@ -1,8 +1,7 @@
 const mongoose=require("mongoose");
 var connection_string = 'mongodb://127.0.0.1:27017/task';
 // if OPENSHIFT env variables are present, use the available connection info:
-mongoURL = process.env.OPENSHIFT_MONGODB_DB_URL || process.env.MONGO_URL,
-mongoURLLabel = "";
+var mongoURL=null;
 if (mongoURL == null && process.env.DATABASE_SERVICE_NAME) {
   var mongoServiceName = process.env.DATABASE_SERVICE_NAME.toUpperCase(),
       mongoHost = process.env[mongoServiceName + '_SERVICE_HOST'],
@@ -36,17 +35,18 @@ var initDb = function(callback) {
   });
   mongoose.Promise=global.Promise;
 };
-
-if(process.env.MONGODB_PASSWORD){
-  connection_string = "mongodb://"+process.env.MONGODB_USER + ":" +
-  process.env.MONGODB_PASSWORD + "@" +
-  "mongodb.taskmanager.svc" + ':' +
-  27017 + '/' +
-  process.env.MONGODB_DATABASE;
-}
-mongoose.connect(connection_string,{
-  useMongoClient: true
-  /* other options */
-});
+console.log(mongoURL)
+// if(process.env.MONGODB_PASSWORD){
+//   connection_string = "mongodb://"+process.env.MONGODB_USER + ":" +
+//   process.env.MONGODB_PASSWORD + "@" +
+//   "mongodb.taskmanager.svc" + ':' +
+//   27017 + '/' +
+//   process.env.MONGODB_DATABASE;
+// }
+// mongoose.connect(connection_string,{
+//   useMongoClient: true
+//   /* other options */
+// });
+console.log(connection_string)
 mongoose.Promise=global.Promise;
 module.exports={mongoose};
