@@ -29,13 +29,13 @@ var initDb = function(callback) {
 
   var mongodb = require('mongodb');
   if (mongodb == null) return;
+  console.log(mongoURL)
   mongoose.connect(mongoURL,{
     useMongoClient: true
     /* other options */
   });
   mongoose.Promise=global.Promise;
 };
-console.log(mongoURL)
 // if(process.env.MONGODB_PASSWORD){
 //   connection_string = "mongodb://"+process.env.MONGODB_USER + ":" +
 //   process.env.MONGODB_PASSWORD + "@" +
